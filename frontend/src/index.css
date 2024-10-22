@@ -28,6 +28,17 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(45deg, #e50087, #7522e1, #ffde07);
+  color: #fff;
+  width: 100vw;
+}
+
+article {
+  /* background: linear-gradient(); */
+  border: 2px solid #ffffff;
+  border-radius: 5rem;
+  padding: 0 10rem;
+  background: linear-gradient(45deg, #ffffff6b, #ffffff00);
 }
 
 h1 {
@@ -65,4 +76,10 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.logo {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 100%;
 }

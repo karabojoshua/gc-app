@@ -1,22 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import './App.css';
+
 
 function App() {
   const [count, setCount] = useState(0)
+  const [data, setData] = useState({
+    id: 0,
+    username: 'unknown',
+    links: ['a', 'b'],
+    avatar: 'none'
+  });
+
+  useEffect(() => {
+    // Fetch data from the backend
+    fetch('http://localhost:5000/api/data')
+      .then((response) => response.json())  // Parse the JSON response
+      .then((data) => {
+        
+        console.log(data);
+        setData(data[0])
+
+      })        // Set the data in the state
+      .catch((error) => console.error('Error fetching data:', error));
+  }, []);  // The empty array ensures the effect runs only once when the component mounts
+  
+  
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <article>
+        <div>
+          <img src={data.avatar} className="logo" alt="Vite logo" />
+        </div>
+        <h1>{data.username}</h1>
+        <div className="card">
+          <p>{data.links[0]}</p>
+          <p>{data.links[1]}</p>
+
       </div>
-      <h1>Vite + React</h1>
+      </article>
+      
+      
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
